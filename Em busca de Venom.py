@@ -5,13 +5,13 @@ if esconderijo == suspeito:
     print("Ahá, te encontrei e é o fim das suas férias!")
 else:
     print("Carambolas, ele não está aqui. Ele continua se divertindo!")
-    reteste = input()
+    reteste = input().lower()
     if reteste == esconderijo:
         print("Ahá, te encontrei e é o fim das suas férias!")
     else:
         print("Carambolas, ele não está aqui. Ele continua se divertindo!")
-        reteste = input()
-        if reteste == esconderijo:
+        reteste2 = input().lower()
+        if reteste2 == esconderijo:
             print("Ahá, te encontrei e é o fim das suas férias!")
         else:
             print("Carambolas, ele não está aqui. Ele continua se divertindo!")
