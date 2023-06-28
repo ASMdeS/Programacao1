@@ -1,8 +1,8 @@
 garrafas = 20
 voluntarios = 5
+inicio = "a"
 
-
-while garrafas > 0 and inicio != "O InterCIn acabou!!! Vamos ver nosso estoque de bebidas":
+while garrafas > 0 and inicio != "O InterCIn acabou!!! Vamos verificar nosso estoque de bebidas":
     inicio = input()
     if inicio == "Acabou uma partida e os alunos estão com MUITA sede, segue a quantidade de jogadores":
         jogadores = int(input())
@@ -29,5 +29,3 @@ else:
         print("Vendemos todas as águas, fizemos uma contagem certeira!!")
     else:
         print("Estamos devendo " + str(abs(garrafas)) + " garrafas para os alunos...")
-
-
