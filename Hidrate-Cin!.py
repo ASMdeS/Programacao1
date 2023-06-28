@@ -1,6 +1,6 @@
 garrafas = 20
 voluntarios = 5
-inicio = "s"
+
 
 while garrafas > 0 and inicio != "O InterCIn acabou!!! Vamos ver nosso estoque de bebidas":
     inicio = input()
