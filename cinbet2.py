@@ -2,33 +2,22 @@ jogos = int(input())
 pontos_vencedor = 0
 time_vencedor = "a"
 total = 0
-pontos = 1
+pontos = 0
 numero = 0
-ManCityPontos = 0
-SpiceGirlsPontos = 0
 
-
-while numero < jogos and pontos >=0:
+while numero < jogos:
     pontos = 0
     time = input()
     gols = int(input())
     chutes = int(input())
     amarelos = int(input())
     vermelhos = int(input())
-    for a in range(0, gols):
-        pontos = pontos + 10
-    for b in range(0, chutes):
-        pontos = pontos + 3
-    for c in range(0, amarelos):
-        pontos = pontos - 2
-    for d in range(0, vermelhos):
-        pontos = pontos - 4
-    if gols >= (chutes*0.3):
-        pontos = pontos + 3
+    pontos = pontos + (gols*10) + (chutes*0.3) - (amarelos*2) - (vermelhos*4)
     if vermelhos >= amarelos:
         pontos = pontos - 3
     if pontos < 0:
         print("O time " + time + " ficou com pontuação negativa. A aposta não é segura, podemos perder nosso dinheiro.")
+        numero = jogos
     else:
         if pontos > pontos_vencedor:
             pontos_vencedor = pontos

@@ -8,6 +8,8 @@ while garrafas > 0 and inicio != "O InterCIn acabou!!! Vamos verificar nosso est
         jogadores = int(input())
         if jogadores > garrafas:
             print("Não teremos água para todos os jogadores... Temos que garantir" + str((jogadores - garrafas)) + "garrafas")
+            garrafas = garrafas*2
+        else: garrafas = garrafas - jogadores
     elif inicio == "Encham o cooler, vai começar um jogo!!!!":
         garrafas = garrafas + 15
         print("Geladeira cheia!")
@@ -20,6 +22,7 @@ while garrafas > 0 and inicio != "O InterCIn acabou!!! Vamos verificar nosso est
         garrafas = garrafas - (quantidade_1 + quantidade_2 + quantidade_3 + quantidade_4 + quantidade_5)
         if garrafas < 0:
             print("Prometemos distribuir" + str(abs(garrafas)) + "garrafas e zeramos")
+        print(garrafas)
 
 
 else:
