@@ -27,15 +27,28 @@ while numero < jogos and pontos >=0:
         pontos = pontos + 3
     if vermelhos >= amarelos:
         pontos = pontos - 3
+    if time == "Manchester CIn":
+        ManCityPontos = ManCityPontos + pontos
+        total = total + pontos
+    elif time == "SpiCIn Girls":
+        SpiceGirlsPontos = SpiceGirlsPontos + pontos
+        total = total + pontos
     if pontos < 0:
         print("O time " + time + " ficou com pontuação negativa. A aposta não é segura, podemos perder nosso dinheiro.")
-    else:
-        if pontos > pontos_vencedor:
-            pontos_vencedor = pontos
-            time_vencedor = time
-        total = total + pontos
-    if numero == (jogos - 1) and pontos_vencedor > 0:
-        chance = ((pontos_vencedor/total)*100)
-        percentage = ("%.2f" % chance)
-        print("Com " + percentage + "% dos pontos, o time " + time_vencedor + " pode garantir nosso dinheiro na CInBet, é uma das grandes apostas do InterCIn.")
+    if numero == (jogos - 1) and pontos > 0:
+        if ManCityPontos > SpiceGirlsPontos:
+            time_vencedor = "Manchester CIn"
+            pontos_vencedor = ManCityPontos
+            chance = ((pontos_vencedor / total) * 100)
+            percentage = ("%.2f" % chance)
+            print(
+                "Com " + percentage + "% dos pontos, o time " + time_vencedor + " pode garantir nosso dinheiro na CInBet, é uma das grandes apostas do InterCIn.")
+        elif SpiceGirlsPontos > ManCityPontos:
+            time_vencedor = "SpiCIn Girls"
+            pontos_vencedor = SpiceGirlsPontos
+            chance = ((pontos_vencedor / total) * 100)
+            percentage = ("%.2f" % chance)
+            print(
+                "Com " + percentage + "% dos pontos, o time " + time_vencedor + " pode garantir nosso dinheiro na CInBet, é uma das grandes apostas do InterCIn.")
+
     numero = numero + 1
