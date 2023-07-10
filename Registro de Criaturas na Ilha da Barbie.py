@@ -11,5 +11,3 @@ for i in range(0, numero):
 print("Registradas:")
 for i in range(0, len(lista)):
     print(lista[i])
-
-
