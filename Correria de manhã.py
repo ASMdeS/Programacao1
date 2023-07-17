@@ -22,15 +22,15 @@ if profissao_inicial == "Personal Trainer":
 #Itens da segunda profissão
 profissao_segunda = input()
 itens_desejados = []
-if profissao_inicial == "Medica":
+if profissao_segunda == "Medica":
     itens_desejados = itens_medica.copy()
-if profissao_inicial == "Assistente de Informatica":
+if profissao_segunda == "Assistente de Informatica":
     itens_desejados = itens_informatica.copy()
-if profissao_inicial == "Padeira":
+if profissao_segunda == "Padeira":
     itens_desejados = itens_padeira.copy()
-if profissao_inicial == "Economista":
+if profissao_segunda == "Economista":
     itens_desejados = itens_economista.copy()
-if profissao_inicial == "Personal Trainer":
+if profissao_segunda == "Personal Trainer":
     itens_desejados = itens_personal.copy()
 
 #Bolsa da Barbie
@@ -39,25 +39,37 @@ itens_bolsa = itens_saida.copy()
 Saida = False
 while Saida == False:
     acao_barbie = input()
-    item_barbie = input()
-    if acao_barbie == "Adicionar":
-        if item_barbie in itens_bolsa:
-            print(f"Barbie, você já colocou {item_barbie} na bolsa")
-        elif item_barbie in itens_desejados:
-            print(f"{item_barbie} adicionado à bolsa")
-            itens_bolsa.append(item_barbie)
-        else:
-            print(f"Barbie, {item_barbie} não esta na lista de itens de {profissao_segunda}")
-    elif acao_barbie == "Retirar":
-        if item_barbie not in itens_bolsa:
-            print(f"Barbie, como você vai retirar algo que já não esta ai?")
-        elif item_barbie in itens_desejados:
-            print(f"Não faca isso Barbie, você precisa de {item_barbie} para trabalhar de {profissao_segunda}")
-        else:
-            print(f"{item_barbie} retirado da bolsa")
-            itens_bolsa.remove(item_barbie)
+    if acao_barbie != "Sair":
+        item_barbie = input()
+        if acao_barbie == "Adicionar":
+            if item_barbie in itens_bolsa:
+                print(f"Barbie, você já colocou {item_barbie} na bolsa")
+            elif item_barbie in itens_desejados:
+                print(f"{item_barbie} adicionado à bolsa")
+                itens_bolsa.append(item_barbie)
+            else:
+                print(f"Barbie, {item_barbie} não esta na lista de itens de {profissao_segunda}")
+        elif acao_barbie == "Retirar":
+            if item_barbie not in itens_bolsa:
+                print(f"Barbie, como você vai retirar algo que já não esta ai?")
+            elif item_barbie in itens_desejados:
+                print(f"Não faca isso Barbie, você precisa de {item_barbie} para trabalhar de {profissao_segunda}")
+            else:
+                print(f"{item_barbie} retirado da bolsa")
+                itens_bolsa.remove(item_barbie)
+    else:
+        itens_saida_organizado = sorted(itens_saida)
+        itens_desejados_organizado = sorted(itens_desejados)
+        itens_bolsa_organizado = sorted(itens_bolsa)
+        adicional_listas = [elemento for elemento in itens_bolsa_organizado if elemento not in itens_desejados_organizado]
+        diferenca_listas = [elemento for elemento in itens_desejados_organizado if elemento not in itens_bolsa_organizado]
 
-    print(itens_saida)
-    if acao_barbie == "Saida":
+        print(f"Itens na bolsa:", ", ".join(itens_bolsa_organizado))
+        if itens_bolsa_organizado == itens_desejados_organizado:
+            print("Boa Barbie, foi na correria mas tudo deu certo!")
+        elif len(diferenca_listas) > 0:
+            print("Oh não!! Barbie, você esqueceu de pegar " + ", ".join(diferenca_listas) + "!!")
+        elif len(adicional_listas) > 0:
+            print("Barbie, você esqueceu de tirar " + ", ".join(adicional_listas) + ", você não usa ele trabalhando de " + profissao_segunda)
 
         Saida = True
