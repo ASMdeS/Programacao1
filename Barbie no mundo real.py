@@ -108,7 +108,7 @@ for coordenada in range(0, len(coordenadas_quebradas)):
 #Lista_distancias
 lista_distancias = []
 distancias_organizadas = []
-lista_tudo
+lista_tudo = []
 
 
 #Procura
@@ -122,6 +122,8 @@ Lista dos(as) {lugar}s mais proximos(as):""")
         distancia_euclidiana = ((int((coordenadas_x[int(indice)])) - int(x_capangas))**2 + (int((coordenadas_y[int(indice)])) - int(y_capangas))**2)**0.5
         contador_numerico +=1
         lista_distancias.append(distancia_euclidiana)
-    distancias_organizadas = sorted(lista_distancias)
-
-    (f"{contador_numerico}. {lista_lugares[int(indice)]} ({lista_zonas[indice]}) - {distancia_euclidiana}")
+        distancias_organizadas = sorted(lista_distancias)
+        print(lista_distancias)
+        print(distancias_organizadas)
+    for item in distancias_organizadas:
+        (f"{int(item)+1}. {lista_lugares[int(indice)]} ({lista_zonas[indice]}) - {distancia_euclidiana}")
