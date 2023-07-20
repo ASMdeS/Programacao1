@@ -1,59 +1,127 @@
 local_capangas = None
 lista_locais = []
+lista_zonas = []
+lista_lugares = []
+lista_tipos = []
+lista_coordenadas = []
 entrada = None
+coordenadas_quebradas = []
+coordenadas_x = []
+coordenadas_y = []
 
+Zona_Norte = []
+Zona_Sul = []
+Zona_Leste = []
+Zona_Oeste = []
 
+numero_norte = 0
+numero_sul = 0
+numero_leste = 0
+numero_oeste = 0
 
-while entrada != "FIM":
+print("Cidade mapeada:")
+
+while entrada != "Fim":
     entrada = input()
-    if entrada != "FIM":
+    if entrada == "Fim":
+        #Printar Zona Norte
+        print(f"""
+Zona Norte""")
+        if len(Zona_Norte) > 0:
+            for a in range(0, len(Zona_Norte)):
+                print(f"- {Zona_Norte[int(a)][0]}")
+        else:
+            print("Nenhum local mapeado nessa zona!")
+        #Printar Zona Sul
+        print(f"""
+Zona Sul""")
+        if len(Zona_Sul) > 0:
+            for a in range(0, len(Zona_Sul)):
+                print(f"- {Zona_Sul[int(a)][0]}")
+        else:
+            print("Nenhum local mapeado nessa zona!")
+        # Printar Zona Leste
+        print(f"""
+Zona Leste""")
+        if len(Zona_Leste) > 0:
+            for a in range(0, len(Zona_Leste)):
+                print(f"- {Zona_Leste[int(a)][0]}")
+        else:
+            print("Nenhum local mapeado nessa zona!")
+        # Printar Zona Oeste
+        print(f"""
+Zona Oeste""")
+        if len(Zona_Oeste) > 0:
+            for a in range(0, len(Zona_Oeste)):
+                print(f"- {Zona_Oeste[int(a)][0]}")
+        else:
+            print("Nenhum local mapeado nessa zona!")
+    else:
         local_capangas = entrada.split(" - ")
         lista_locais.append(local_capangas)
-    else:
-        saida = True
-    for n in lista_locais:
-        print(f"""
-Zona Norte:""")
-        numero_norte = 0
-        numero_sul = 0
-        numero_leste = 0
-        numero_oeste = 0
-        if lista_locais[int(n)][0] == "Norte":
-            print({lista_locais[int(n)][1]}
-            numero_norte += 1
-        if numero_norte == 0:
-            print("Nenhum local mapeado nessa zona!")
+        lista_zonas.append(local_capangas[0])
+        lista_lugares.append(local_capangas[1])
+        lista_coordenadas.append(local_capangas[2])
+        #Lista Zona Norte
+        if local_capangas[0] == "Norte":
+                Zona_Norte.append(local_capangas[1:])
+        #Lista Zona Sul
+        if local_capangas[0] == "Sul":
+                Zona_Sul.append(local_capangas[1:])
+        #Lista Zona Leste
+        if local_capangas[0] == "Leste":
+                Zona_Leste.append(local_capangas[1:])
+        #Lista Zona Oeste
+        if local_capangas[0] == "Oeste":
+                Zona_Oeste.append(local_capangas[1:])
 
-        print(f"""
-Zona Sul:""")
-        if lista_locais[int(n)][0] == "Sul":
-            print({lista_locais[int(n)][1]}
-            numero_sul += 1
-        if numero_sul == 0:
-            print("Nenhum local mapeado nessa zona!")
+#Esoncerijos da Barbie
+esconderijos_barbie = input().split(", ")
 
-        print(f"""
-Zona Leste:""")
-        if lista_locais[int(n)][0] == "Leste":
-            print({lista_locais[int(n)][1]}
-        numero_leste += 1
-        if numero_leste == 0:
-            print("Nenhum local mapeado nessa zona!")
-
-        print(f"""
-Zona Oeste:""")
-        if lista_locais[int(n)][0] == "Oeste":
-            print({lista_locais[int(n)][1]}
-        numero_oeste += 1
-        if numero_oeste == 0:
-            print("Nenhum local mapeado nessa zona!")
-
-esconderijos_barbie = input().split()
+#Local capangas
 posicao_capangas = input().split(" - ")
 localizacao_capangas = posicao_capangas[0]
 distancia_capangas = posicao_capangas[1]
+x_capangas = distancia_capangas[0]
+y_capangas = distancia_capangas[1]
 
-distancia_euclidiana = ((x1 – x2)**2) + ((y1 – y2)**2)**0.5
+#Pegando as coordenadas
+for i in range(0, len(lista_lugares)):
+    lugar_trabalho = (lista_lugares[int(i)].split(" "))
+    lista_tipos.append(lugar_trabalho[0])
+
+#Pegando os tipos de lugares
+for a in range(0, len(lista_coordenadas)):
+    coordenada_trabalho = (lista_coordenadas[int(a)].split(" "))
+    coordenadas_x.append(coordenada_trabalho[0])
+    coordenadas_y.append(coordenada_trabalho[1])
+
+print(coordenadas_x)
+print(coordenadas_y)
+print(lista_coordenadas)
+print(lista_tipos)
+print(lista_zonas)
+
+
+#Trabalhando com coordenadas
+
+for coordenada in range(0, len(coordenadas_quebradas)):
+    if((coordenadas_quebradas[int(coordenada)]) % 2) == 0:
+        coordenadas_x.append(coordenadas_quebradas[int(coordenada)])
+    else:
+        coordenadas_y.append(coordenadas_quebradas[int(coordenada)])
+#Procura
+for lugar in esconderijos_barbie:
+
+    print(f"""Recebemos informações que a Barbie está no(a) {lugar} mais próximo(a)... Vá atrás dela!
+Lista dos(as) {lugar}s mais proximos(as):""")
+    if lugar in lista_tipos:
+        print(lugar)
+
+
+
+
+
 
 
 print(lista_locais)

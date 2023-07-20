@@ -32,43 +32,45 @@ meio_sapato = meio_sapato - 1
 
 saida = False
 
+selecao_penteado = None
+selecao_top = None
+selecao_bottom = None
+selecao_sapato = None
+
 cursor_penteado = None
 cursor_top = None
 cursor_bottom = None
 cursor_sapato = None
+
 #Usando a máquina
-while saida == False:
-    selecao_penteado = None
-    selecao_top = None
-    selecao_bototm = None
-    selecao_sapato = None
+while saida is False:
     selecao_barbie = input().split()
-    if selecao_barbie[0][1] == "<":
-        cursor_penteado = (int(meio_penteado) - int(selecao_barbie[0][0])) % len(opcoes_penteados)
+    if selecao_barbie[0][(len(selecao_barbie[0])-1)] == "<":
+        cursor_penteado = (int(meio_penteado) - int(selecao_barbie[0][:(len(selecao_barbie[0])-1)])) % len(opcoes_penteados)
         selecao_penteado = opcoes_penteados[cursor_penteado]
-    elif selecao_barbie[0][1] == ">":
-        cursor_penteado = (int(meio_penteado) + int(selecao_barbie[0][0])) % (len(opcoes_penteados))
+    elif selecao_barbie[0][(len(selecao_barbie[0])-1)] == ">":
+        cursor_penteado = (int(meio_penteado) + int(selecao_barbie[0][:(len(selecao_barbie[0])-1)])) % (len(opcoes_penteados))
         selecao_penteado = opcoes_penteados[cursor_penteado]
 
-    if selecao_barbie[1][1] == "<":
-        cursor_top = (int(meio_top) - int(selecao_barbie[1][0])) % len(opcoes_tops)
+    if selecao_barbie[1][(len(selecao_barbie[1])-1)] == "<":
+        cursor_top = (int(meio_top) - int(selecao_barbie[1][:(len(selecao_barbie[1])-1)])) % len(opcoes_tops)
         selecao_top = opcoes_tops[cursor_top]
-    elif selecao_barbie[1][1] == ">":
-        cursor_top = (int(meio_top) + int(selecao_barbie[1][0])) % len(opcoes_tops)
-        selecao_top = opcoes_tops[int(cursor_top)]
+    elif selecao_barbie[1][(len(selecao_barbie[1])-1)] == ">":
+        cursor_top = (int(meio_top) + int(selecao_barbie[1][:(len(selecao_barbie[1])-1)])) % len(opcoes_tops)
+        selecao_top = opcoes_tops[cursor_top]
 
-    if selecao_barbie[2][1] == "<":
-        cursor_bottom = (int(meio_bottom) - int(selecao_barbie[2][0])) % len(opcoes_bottoms)
+    if selecao_barbie[2][(len(selecao_barbie[2])-1)] == "<":
+        cursor_bottom = (int(meio_bottom) - int(selecao_barbie[2][:(len(selecao_barbie[2])-1)])) % len(opcoes_bottoms)
         selecao_bottom = opcoes_bottoms[cursor_bottom]
-    elif selecao_barbie[2][1] == ">":
-        cursor_bottom = (int(meio_bottom) + int(selecao_barbie[2][0])) % len(opcoes_bottoms)
+    elif selecao_barbie[2][(len(selecao_barbie[2])-1)] == ">":
+        cursor_bottom = (int(meio_bottom) + int(selecao_barbie[2][:(len(selecao_barbie[2])-1)])) % len(opcoes_bottoms)
         selecao_bottom = opcoes_bottoms[cursor_bottom]
 
-    if selecao_barbie[3][1] == "<":
-        cursor_sapato = (int(meio_sapato) - int(selecao_barbie[3][0])) % len(opcoes_sapatos)
+    if selecao_barbie[3][(len(selecao_barbie[3])-1)] == "<":
+        cursor_sapato = (int(meio_sapato) - int(selecao_barbie[3][:(len(selecao_barbie[3])-1)])) % len(opcoes_sapatos)
         selecao_sapato = opcoes_sapatos[cursor_sapato]
-    elif selecao_barbie[3][1] == ">":
-        cursor_sapato = (int(meio_sapato) + int(selecao_barbie[3][0])) % len(opcoes_sapatos)
+    elif selecao_barbie[3][(len(selecao_barbie[3])-1)] == ">":
+        cursor_sapato = (int(meio_sapato) + int(selecao_barbie[3][:(len(selecao_barbie[3])-1)])) % len(opcoes_sapatos)
         selecao_sapato = opcoes_sapatos[cursor_sapato]
     print("Iniciando mesclagem...")
     print(f"""O look gerado foi:
