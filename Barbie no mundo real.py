@@ -110,20 +110,50 @@ lista_distancias = []
 distancias_organizadas = []
 lista_tudo = []
 
+#list combinada
 
 #Procura
-for lugar in esconderijos_barbie:
-    print(f"""Recebemos informações que a Barbie está no(a) {lugar} mais próximo(a)... Vá atrás dela!
-Lista dos(as) {lugar}s mais proximos(as):""")
+print(f"""Recebemos informações que a Barbie está no(a) {esconderijos_barbie[0]} mais próximo(a)... Vá atrás dela!
+Lista dos(as) {esconderijos_barbie[0]}s mais proximos(as):""")
+indexes = [idx for idx, value in enumerate(lista_tipos) if value == esconderijos_barbie[0]]
+if indexes == []:
+    print(f"Nenhum(a) {esconderijos_barbie[0]} encontrado na cidade! que tipo de informação é essa!?")
+for indice in indexes:
+    contador_numerico = 1
+    distancia_euclidiana = ((int((coordenadas_x[int(indice)])) - int(x_capangas))**2 + (int((coordenadas_y[int(indice)])) - int(y_capangas))**2)**0.5
+    contador_numerico +=1
+    lista_distancias.append(distancia_euclidiana)
+
+    distancias_organizadas = sorted(lista_distancias)
+for item in range(0, len(distancias_organizadas)):
+    print(f"{int(item)+1}. {lista_lugares[int(indexes[item])]} ({lista_zonas[indexes[item]]}) - {distancias_organizadas[item]}")
+percurso_barbie = int(distancias_organizadas[0])
+if percurso_barbie > int(distancia_capangas):
+    print("Não temos combustível suficiente para continuar a perseguição, infelizmente a Barbie conseguiu fugir!")
+else:
+    print(f"Os capangas chegaram a(ao) {lista_lugares[int(indexes[0])]} ({lista_zonas[int(indexes[0])]}), mas a Barbie não estava mais lá...")
+
+for lugar in esconderijos_barbie[1:]:
+    lista_distancias = []
+    distancias_organizadas = []
+    print(f"""Recebemos informações que a Barbie fugiu para o(a) {lugar} mais distante... Vá atrás dela!
+Lista dos(as) {lugar}s mais distantes:""")
     indexes = [idx for idx, value in enumerate(lista_tipos) if value == lugar]
-    print(indexes)
     for indice in indexes:
         contador_numerico = 1
         distancia_euclidiana = ((int((coordenadas_x[int(indice)])) - int(x_capangas))**2 + (int((coordenadas_y[int(indice)])) - int(y_capangas))**2)**0.5
-        contador_numerico +=1
+        contador_numerico += 1
         lista_distancias.append(distancia_euclidiana)
         distancias_organizadas = sorted(lista_distancias)
-        print(lista_distancias)
-        print(distancias_organizadas)
-    for item in distancias_organizadas:
-        (f"{int(item)+1}. {lista_lugares[int(indice)]} ({lista_zonas[indice]}) - {distancia_euclidiana}")
+        lista_tudo.append(f"{lista_lugares[int(indice])]} ({lista_zonas[indice}) - {distancia_euclidiana}")
+    for item in range(0, len(distancias_organizadas)):
+        print(f"{int(item)+1}. {lista_lugares[int(indexes[item])]} ({lista_zonas[indexes[item]]}) - {distancias_organizadas[item]}")
+    percurso_barbie = percurso_barbie + distancia_euclidiana
+    if percurso_barbie > int(distancia_capangas):
+        print("Não temos combustível suficiente para continuar a perseguição, infelizmente a Barbie conseguiu fugir!")
+    else:
+        if len(distancias_organizadas) > len(indexes):
+            print(f"Os capangas chegaram a(ao) {lista_lugares[int(indice)]} ({lista_zonas[int(indice)]}), mas a Barbie não estava mais lá...")
+        else:
+            print(f"Finalmente, depois de {percurso_barbie}km percorridos, os capangas capturaram a Barbie no(a) {lista_lugares[len(lista_lugares)-1]} ({lista_zonas[len(lista_zonas)-1]}) - Coordenadas:({coordenadas_x[len(coordenadas_x)-1]}, {coordenadas_y[len(coordenadas_y)-1]})")
+
