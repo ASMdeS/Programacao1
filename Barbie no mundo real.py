@@ -81,9 +81,10 @@ esconderijos_barbie = input().split(", ")
 #Local capangas
 posicao_capangas = input().split(" - ")
 localizacao_capangas = posicao_capangas[0]
+localizacao_quebrada = localizacao_capangas.split(" ")
 distancia_capangas = posicao_capangas[1]
-x_capangas = distancia_capangas[0]
-y_capangas = distancia_capangas[1]
+x_capangas = localizacao_quebrada[0]
+y_capangas = localizacao_quebrada[1]
 
 #Pegando as coordenadas
 for i in range(0, len(lista_lugares)):
@@ -96,13 +97,6 @@ for a in range(0, len(lista_coordenadas)):
     coordenadas_x.append(coordenada_trabalho[0])
     coordenadas_y.append(coordenada_trabalho[1])
 
-print(coordenadas_x)
-print(coordenadas_y)
-print(lista_coordenadas)
-print(lista_tipos)
-print(lista_zonas)
-
-
 #Trabalhando com coordenadas
 
 for coordenada in range(0, len(coordenadas_quebradas)):
@@ -110,18 +104,24 @@ for coordenada in range(0, len(coordenadas_quebradas)):
         coordenadas_x.append(coordenadas_quebradas[int(coordenada)])
     else:
         coordenadas_y.append(coordenadas_quebradas[int(coordenada)])
+
+#Lista_distancias
+lista_distancias = []
+distancias_organizadas = []
+lista_tudo
+
+
 #Procura
 for lugar in esconderijos_barbie:
-
     print(f"""Recebemos informações que a Barbie está no(a) {lugar} mais próximo(a)... Vá atrás dela!
 Lista dos(as) {lugar}s mais proximos(as):""")
-    if lugar in lista_tipos:
-        print(lugar)
+    indexes = [idx for idx, value in enumerate(lista_tipos) if value == lugar]
+    print(indexes)
+    for indice in indexes:
+        contador_numerico = 1
+        distancia_euclidiana = ((int((coordenadas_x[int(indice)])) - int(x_capangas))**2 + (int((coordenadas_y[int(indice)])) - int(y_capangas))**2)**0.5
+        contador_numerico +=1
+        lista_distancias.append(distancia_euclidiana)
+    distancias_organizadas = sorted(lista_distancias)
 
-
-
-
-
-
-
-print(lista_locais)
+    (f"{contador_numerico}. {lista_lugares[int(indice)]} ({lista_zonas[indice]}) - {distancia_euclidiana}")
