@@ -11,3 +11,9 @@ print(lista_zonas)
 Opa, Lucca! Tem como tu me ajudar com o seguinte erro:
 23.1L3Q10 - Barbie no mundo real?
 Erro Test Case 2
+
+def caracteristicas(input().split(" ")):
+    primeira_entrada = input().split(" ")
+    nome_participante = primeira_entrada[0]
+    qtd_propulsores = int(primeira_entrada[1])
+    velocidade_propulsor = int(primeira_entrada[2])
