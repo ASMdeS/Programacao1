@@ -3,6 +3,14 @@ saida = False
 participante_classificado = []
 participante_desclassificado = []
 
+def imprimir_relatorio():
+    velocidade_final = qtd_propulsores * velocidade_propulsor
+    print(f"""--- Participante: {nome_participante} ---
+Qtd de propulsores Final: {qtd_propulsores}
+Velocidade Inicial: {velocidade_inicial} km/h
+Velocidade Final: {velocidade_final} km/h""")
+    participante_classificado.append(nome_participante)
+
 while novo_item is True:
     saida = False
     primeira_entrada = input().split(" ")
@@ -21,22 +29,16 @@ while novo_item is True:
             saida = True
             participante_desclassificado.append(nome_participante)
         elif entradas_subsequentes == "Próximo":
-            velocidade_final = qtd_propulsores * velocidade_propulsor
-            print(f"""--- Partipante: {nome_participante} ---
-Qtd de propulsores Final: {qtd_propulsores}
-Velocidade Inicial: {velocidade_inicial} km/h
-Velocidade Final: {velocidade_final} km/h""")
+            imprimir_relatorio()
             saida = True
-            participante_classificado.append(nome_participante)
         elif entradas_subsequentes == "FIM":
-            velocidade_final = qtd_propulsores * velocidade_propulsor
-            print(f""""--- Partipante: {nome_participante} ---
-            Qtd de propulsores Final: {qtd_propulsores}
-            Velocidade Inicial: {velocidade_inicial} km/h
-            Velocidade Final: {velocidade_final} km/h""")
+            imprimir_relatorio()
             saida = True
             novo_item = False
-            participante_classificado.append(nome_participante)
+        if qtd_propulsores == 0:
+            print(f"BUUMM!! Infelizmente, {nome_participante} está fora da corrida.")
+            saida = True
+            participante_desclassificado.append(nome_participante)
     if novo_item is False:
         if len(participante_classificado) > 0:
             print(f"Relatório da CIn Pod Race: {len(participante_classificado)} participantes terminaram a corrida e {len(participante_desclassificado)} foram desclassificados.")
