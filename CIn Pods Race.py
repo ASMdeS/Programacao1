@@ -14,33 +14,37 @@ Velocidade Final: {velocidade_final} km/h""")
 while novo_item is True:
     saida = False
     primeira_entrada = input().split(" ")
-    nome_participante = primeira_entrada[0]
-    qtd_propulsores = int(primeira_entrada[1])
-    velocidade_propulsor = int(primeira_entrada[2])
-    velocidade_inicial = qtd_propulsores * velocidade_propulsor
-    while saida is False:
-        entradas_subsequentes = input()
-        if entradas_subsequentes == "Pit-Stop Espacial":
-            qtd_propulsores += 1
-        elif entradas_subsequentes == "Um Droide apareceu do nada na pista, do nadaaa! Perdi o controle e bati em uma pedra.":
-            qtd_propulsores -= 1
-        elif entradas_subsequentes == "Opa esse participante não está inscrito, desclassificando em 3, 2, 1...":
-            print(f"O {nome_participante} achou que não descobriríamos, tirem {nome_participante} imediatamente da pista.")
-            saida = True
-            participante_desclassificado.append(nome_participante)
-        elif entradas_subsequentes == "Próximo":
-            imprimir_relatorio()
-            saida = True
-        elif entradas_subsequentes == "FIM":
-            imprimir_relatorio()
-            saida = True
-            novo_item = False
-        if qtd_propulsores == 0:
-            print(f"BUUMM!! Infelizmente, {nome_participante} está fora da corrida.")
-            saida = True
-            participante_desclassificado.append(nome_participante)
+    if primeira_entrada[0] == "FIM":
+        saida = True
+        novo_item = False
+    else:
+        nome_participante = " ".join(primeira_entrada[:len(primeira_entrada)-2])
+        qtd_propulsores = int(primeira_entrada[len(primeira_entrada)-2])
+        velocidade_propulsor = int(primeira_entrada[len(primeira_entrada)-1])
+        velocidade_inicial = qtd_propulsores * velocidade_propulsor
+        while saida is False:
+            entradas_subsequentes = input()
+            if entradas_subsequentes == "Pit-Stop Espacial":
+                qtd_propulsores += 1
+            elif entradas_subsequentes == "Um Droide apareceu do nada na pista, do nadaaa! Perdi o controle e bati em uma pedra.":
+                qtd_propulsores -= 1
+            elif entradas_subsequentes == "Opa esse participante tem ID de Droide, desclassificando em 3, 2, 1...":
+                print(f"O {nome_participante} achou que não descobriríamos, tirem {nome_participante} imediatamente da pista.")
+                saida = True
+                participante_desclassificado.append(nome_participante)
+            elif entradas_subsequentes == "Próximo":
+                imprimir_relatorio()
+                saida = True
+            elif entradas_subsequentes == "FIM":
+                imprimir_relatorio()
+                saida = True
+                novo_item = False
+            if qtd_propulsores == 0:
+                print(f"BUUMM!! Infelizmente, {nome_participante} está fora da corrida.")
+                saida = True
+                participante_desclassificado.append(nome_participante)
     if novo_item is False:
         if len(participante_classificado) > 0:
-            print(f"Relatório da CIn Pod Race: {len(participante_classificado)} participantes terminaram a corrida e {len(participante_desclassificado)} foram desclassificados.")
+                print(f"Relatório da CIn Pod Race: {len(participante_classificado)} participantes terminaram a corrida e {len(participante_desclassificado)} foram desclassificados.")
         else:
-            print("NÃO! Esses Droides me pagam, sabotaram minha corrida!")
+                print("NÃO! Esses Droides me pagam, sabotaram minha corrida!")
