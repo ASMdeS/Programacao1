@@ -1,1 +1,2 @@
-print("Todas as expressoes foram enviadas!".split())
+print(len("01000000"))
+print(len("01000001"))
