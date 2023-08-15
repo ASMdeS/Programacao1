@@ -1,22 +1,24 @@
-nome_suspeito = input()
-string_concat = input()
-encontrou_suspeito = ""
+#Função
+def procurar(i, j, nome_suspeito, string_concat):
+    encontrou_suspeito = string_concat[i:j]
+    if j == len(string_concat):
+        return procurar(i + 1, 1, nome_suspeito, string_concat)
+    if i > len(string_concat):
+        return False
+    if encontrou_suspeito == nome_suspeito:
+        return True
+    else:
+        return procurar(i, j + 1, nome_suspeito, string_concat)
+
+#Argumentos
+suspeito_original = input()
+nome_suspeito = suspeito_original.lower()
+string_concat = input().lower()
 i = 0
 j = 1
-suspeito_encontrado = False
-#Slice string
 
-while i < len(string_concat) and encontrou_suspeito.lower() != nome_suspeito.lower():
-    while j < len(string_concat) + 1 and encontrou_suspeito.lower() != nome_suspeito.lower():
-        encontrou_suspeito = string_concat[i:(j)].lower()
-        j += 1
-    #return substrings
-    i += 1
-    j = 1
-    if encontrou_suspeito.lower() == nome_suspeito.lower():
-        suspeito_encontrado = True
-
-if suspeito_encontrado == True:
-    print(f'Encontrei, o culpado é o {nome_suspeito}!')
+#Printar
+if procurar(i, j, nome_suspeito, string_concat):
+    print(f'Encontrei, o culpado é o {suspeito_original}!')
 else:
-    print(f'Não era o {nome_suspeito}, tenho que continuar procurando.')
+    print(f'Não era o {suspeito_original}, tenho que continuar procurando.')
