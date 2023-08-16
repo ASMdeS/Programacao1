@@ -1,6 +1,6 @@
-def resgate_zelda(elementos_salas, sala_inicial, contador_sala, link_espada, rupees_coletados):
+def resgate_zelda(elementos_salas, sala_inicial, contador_sala, link_espada, rupees_coletados, quantidade_salas):
     sala_analisada = elementos_salas[(sala_inicial + contador_sala) % quantidade_salas]
-    if contador_sala == len(elementos_salas):
+    if contador_sala >= len(elementos_salas):
         return False, rupees_coletados
     else:
         for a in range(0, sala_analisada.count("◇")):
@@ -9,12 +9,14 @@ def resgate_zelda(elementos_salas, sala_inicial, contador_sala, link_espada, rup
             if "Agahnim" in sala_analisada:
                 if link_espada:
                     return True, rupees_coletados
+                else:
+                    return False, rupees_coletados
             else:
                 return True, rupees_coletados
         else:
-            if "espada" in sala_analisada:
+            if "espada" in sala_analisada :
                 link_espada = True
-            return resgate_zelda(elementos_salas, sala_inicial, contador_sala + 1, link_espada, rupees_coletados)
+            return resgate_zelda(elementos_salas, sala_inicial, contador_sala + 1, link_espada, rupees_coletados, quantidade_salas)
 
 quantidade_salas = int(input())
 elementos_salas = []
@@ -28,9 +30,7 @@ for numero in range(quantidade_salas):
 
 sala_inicial = int(input())
 
-print(resgate_zelda(elementos_salas, sala_inicial, contador_sala, link_espada, rupees_coletados))
-
-resgatou_zelda, contagem_rupees = resgate_zelda(elementos_salas, sala_inicial, contador_sala, link_espada, rupees_coletados)
+resgatou_zelda, contagem_rupees = resgate_zelda(elementos_salas, sala_inicial, contador_sala, link_espada, rupees_coletados, quantidade_salas)
 
 if resgatou_zelda:
     print(f'A princesa Zelda está a salvo e ainda conseguimos coletar {contagem_rupees} rupees')
