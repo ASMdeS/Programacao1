@@ -1,5 +1,15 @@
 def resgate_zelda(elementos_salas, sala_inicial, contador_sala, link_espada, rupees_coletados, quantidade_salas):
-    sala_analisada = elementos_salas[(sala_inicial + contador_sala) % quantidade_salas]
+    sala_analisada = elementos_salas[sala_inicial]
+    print(sala_analisada)
+    print(contador_sala)
+    for element in sala_analisada:
+        if element in salas_percorridas:
+            return False, rupees_coletados
+        else:
+            if element.isdigit():
+                print(element)
+                salas_percorridas.append(element)
+                sala_inicial = int(element)
     if contador_sala >= len(elementos_salas):
         return False, rupees_coletados
     else:
@@ -14,7 +24,7 @@ def resgate_zelda(elementos_salas, sala_inicial, contador_sala, link_espada, rup
             else:
                 return True, rupees_coletados
         else:
-            if "espada" in sala_analisada :
+            if "espada" in sala_analisada:
                 link_espada = True
             return resgate_zelda(elementos_salas, sala_inicial, contador_sala + 1, link_espada, rupees_coletados, quantidade_salas)
 
@@ -23,6 +33,7 @@ elementos_salas = []
 contador_sala = 0
 link_espada = False
 rupees_coletados = 0
+salas_percorridas = []
 
 for numero in range(quantidade_salas):
     sala_atual = input().split()

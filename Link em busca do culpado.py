@@ -1,6 +1,7 @@
 #Função
 def procurar(i, j, nome_suspeito, string_concat):
     encontrou_suspeito = string_concat[i:j]
+    print(encontrou_suspeito)
     if j == len(string_concat):
         return procurar(i + 1, 1, nome_suspeito, string_concat)
     if i > len(string_concat):
