@@ -1,9 +1,10 @@
+#O que será usado no código
 quantidade_famosos = int(input())
 nattys = dict()
 fake_nattys = dict()
-lista_nattys = []
-lista_fakes = []
+lista_print = []
 
+#Formar o dicionário dos famosos fake e o dos nattys
 for i in range(0, quantidade_famosos):
     informacoes_famoso = input().split(" - ")
     if informacoes_famoso[2] == "natty":
@@ -11,29 +12,16 @@ for i in range(0, quantidade_famosos):
     else:
         fake_nattys[informacoes_famoso[0]] = [int(informacoes_famoso[1])], [informacoes_famoso[2]]
 
-nattys = sorted(nattys.items(), key=lambda x:x[1][0])
-fake_nattys = sorted(fake_nattys.items(), key=lambda x:x[1][0])
+#Ordenar os dicionários, criando uma lista de tuplas
+tupla_nattys = sorted(nattys.items(), key=lambda x:x[1][0], reverse=True)
+tupla_fakes = sorted(fake_nattys.items(), key=lambda x:x[1][0], reverse=True)
 
-print(nattys)
-print(fake_nattys)
+#Criar uma lista com os nomes,score e veredito segundo o padrão nome - score - veredito
+for natty in tupla_nattys:
+    lista_print.append(f'{natty[0]} - {natty[1][0][0]} - {natty[1][1][0]}')
+for fake in tupla_fakes:
+    lista_print.append(f'{fake[0]} - {fake[1][0][0]} - {fake[1][1][0]}')
 
-for natty in range(0, len(nattys)):
-    nome = list(nattys[natty].keys())[natty]
-    score = nattys[list(nattys.keys())[natty]][0]
-    veredito = nattys[list(nattys.keys())[natty]][1]
-    tupla_nattys.append(f'{nome} - {score} - {veredito}')
-
-for fake in range(0, len(fake_nattys)):
-    nome = list(fake_nattys.keys())[fake]
-    score = fake_nattys[list(fake_nattys.keys())[fake]][0]
-    veredito = fake[list(fake_nattys.keys())[fake]][1]
-    tupla_fakes.append(f'{nome} - {score} - {veredito}')
-
-final = (lista_nattys, lista_fakes)
-
-#Print
-print(quantidade_famosos)
-for cara in tupla_nattys:
-    print(cara)
-for pessoa in tupla_fakes:
-    print(pessoa)
+#Printar
+for famoso in lista_print:
+    print(famoso)
