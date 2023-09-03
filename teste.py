@@ -1,25 +1,19 @@
-print(len("01000000"))
-print(len("01000001"))
-
-for sala in range(quantidade_salas):
-    if resgatou_zelda = False:
-        sala_analisada = elementos_salas[(sala_inicial+sala) % quantidade_salas]
-        if "Zelda" in sala_analisada:
-            if "Agahnim" in sala_analisada:
-                if link_espada:
-                    resgatou_zelda = True
-            else:
-                resgatou_zelda = True
-        if "espada" in sala_analisada:
-            link_espada = True
-        for a in range(0, sala_analisada.count("◇")):
-            rupees_coletados += 1
-
-for n in range(0, quantidade_famosos):
-    lista_famosos = input().split(" - ")
-    colecao_famoso['nome_famoso'] = lista_famosos[0]
-    colecao_famoso['profissao'] = lista_famosos[1]
-    colecao_famoso['avaliação_famoso'] = lista_famosos[2]
-    colecao_famoso['mês_planejado'] = lista_famosos[3]
-    todos_famosos.append(colecao_famoso)
-    print(todos_famosos)
+def comparar(entrada, buscada, index_entrada, index_buscada, frase_entrada, frase_buscada, boolean):
+    print(buscada[list(buscada.keys())[frase_buscada]])
+    print(entrada[list(entrada.keys())[frase_entrada]])
+    if boolean is True:
+        print("ddddddddddddddddddddddddddddddddddd")
+        print(buscada[list(buscada.keys())[frase_buscada]][index_buscada])
+        print(entrada[list(entrada.keys())[frase_entrada]][index_entrada])
+        if buscada[list(buscada.keys())[frase_buscada]][index_buscada] == entrada[list(entrada.keys())[frase_entrada]][index_entrada]:
+            print(boolean)
+            return comparar(entrada, buscada, index_entrada + 1, index_buscada + 1, frase_entrada, frase_buscada, True)
+    else:
+        print(entrada[list(entrada.keys())[frase_entrada]])
+        for trigrama in entrada[list(entrada.keys())[frase_entrada]]:
+            print(trigrama)
+            print(buscada[list(buscada.keys())[0]][0])
+            if buscada[list(buscada.keys())[frase_buscada]][0] == trigrama:
+                print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+                return comparar(entrada, buscada, index_entrada, index_buscada + 1, frase_entrada, frase_buscada, True)
+    return comparar(entrada, buscada, index_entrada, index_buscada, frase_entrada + 1, frase_buscada, False)
