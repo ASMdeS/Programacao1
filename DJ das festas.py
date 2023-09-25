@@ -22,15 +22,16 @@ class playlist:
 
 def ajustar_playlist():
     duracao_atual = playlist_obj.duracao()
+    print(duracao_atual)
     musicas_adicionadas = 0
     musicas_removidas = 0
 
-    while duracao_atual > duracao_festa:
+    while duracao_atual > duracao_festa + 2:
         playlist_obj.remover()
         duracao_atual = playlist_obj.duracao()
         musicas_removidas += 1
 
-    while duracao_atual < duracao_festa:
+    while duracao_atual + 2 < duracao_festa:
         duracao_atual += 3
         musicas_adicionadas += 1
 
