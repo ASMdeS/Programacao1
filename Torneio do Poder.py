@@ -5,26 +5,41 @@ class Lutador:
         self.especie = especie
         self.incluido = incluido
 
+    def aumentar_poder(self):
+        if self.especie == "Saiyajin":
+            self.poder_luta += (self.poder_luta / 10)
+        elif self.especie == "Hibrido-Saiyajin":
+            self.poder_luta += (self.poder_luta / 5)
+
+
 contagem_lutadores = 0
-lista_lutadores = []
+lista_objetos = []
 
 while contagem_lutadores < 8:
     entrada = input().split()
     if entrada[0] == "ADD":
         entrada[1] = Lutador(entrada[1], int(entrada[2]), entrada[3], True)
-        contagem_lutadores +=1
-        if entrada[3] == "Saiyajin":
-            entrada[1].poder_luta += (entrada[1].poder_luta / 10)
-            lista_lutadores.append(entrada[1])
-        elif entrada[3] == "Hibrido-Saiyajin":
-            entrada[1].poder_luta += (entrada[1].poder_luta / 5)
-    elif entrada[0] == "DELL":
-        entrada[1] = Lutador(entrada[1], int(entrada[2]), entrada[3], False)
+        lista_objetos.append(entrada[1])
+        contagem_lutadores += 1
+    elif entrada[0] == "DEL":
+        for elemento in lista_objetos:
+            if elemento.nome == entrada[1]:
+                lista_objetos.remove(elemento)
         contagem_lutadores -= 1
-        for elemento in lista_lutadores:
-            if elemento == entrada[1]:
-                lista_lutadores.pop(elemento.index())
 
-primeira_chave = lista_lutadores[:3]
-segunda_chave = lista_lutadores[4:]
+primeira_chave = lista_objetos[0:4]
+segunda_chave = lista_objetos[4:8]
 
+# Quartas
+for i in range(0, 4):
+    if primeira_chave[i].poder_luta > segunda_chave[i].poder_luta:
+        primeira_chave[i].aumentar_poder()
+        segunda_chave.pop(i)
+    else:
+        segunda_chave[i].aumentar_poder()
+        primeira_chave.pop(i)
+
+for objeto in primeira_chave:
+    print(objeto.nome)
+for objeto in segunda_chave:
+    print(objeto.nome)
